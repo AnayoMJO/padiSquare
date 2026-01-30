@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { Product } from '@/types';
+import Image from "next/image";
+import { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
@@ -9,9 +9,9 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, brandColor }: ProductCardProps) {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(product.price);
 
   return (
@@ -40,7 +40,7 @@ export function ProductCard({ product, brandColor }: ProductCardProps) {
         </div>
 
         {/* Product Name */}
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 flex-grow">
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 line-clamp-2 grow">
           {product.name}
         </h3>
 
@@ -51,10 +51,7 @@ export function ProductCard({ product, brandColor }: ProductCardProps) {
 
         {/* Price */}
         <div className="mt-auto pt-3 border-t border-gray-200 dark:border-gray-700">
-          <p
-            className="text-xl font-bold"
-            style={{ color: brandColor }}
-          >
+          <p className="text-xl font-bold" style={{ color: brandColor }}>
             {formattedPrice}
           </p>
         </div>

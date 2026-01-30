@@ -1,9 +1,6 @@
-import { Product } from '@/types';
+import { Product } from "@/types";
 
-export function searchProducts(
-  products: Product[],
-  query: string
-): Product[] {
+export function searchProducts(products: Product[], query: string): Product[] {
   if (!query.trim()) return products;
 
   const lowerQuery = query.toLowerCase();
@@ -11,25 +8,26 @@ export function searchProducts(
     (product) =>
       product.name.toLowerCase().includes(lowerQuery) ||
       product.description.toLowerCase().includes(lowerQuery) ||
-      product.category.toLowerCase().includes(lowerQuery)
+      product.category.toLowerCase().includes(lowerQuery),
   );
 }
 
 export function sortProducts(
   products: Product[],
-  sortBy: 'price-asc' | 'price-desc' | 'newest' = 'newest'
+  sortBy: "price-asc" | "price-desc" | "newest" = "newest",
 ): Product[] {
   const sorted = [...products];
 
   switch (sortBy) {
-    case 'price-asc':
+    case "price-asc":
       return sorted.sort((a, b) => a.price - b.price);
-    case 'price-desc':
+    case "price-desc":
       return sorted.sort((a, b) => b.price - a.price);
-    case 'newest':
+    case "newest":
     default:
       return sorted.sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
       );
   }
 }
@@ -46,7 +44,7 @@ export interface PaginationResult<T> {
 export function paginateProducts(
   products: Product[],
   page: number = 1,
-  itemsPerPage: number = 12
+  itemsPerPage: number = 12,
 ): PaginationResult<Product> {
   const totalItems = products.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -67,10 +65,10 @@ export function paginateProducts(
 
 export function processProducts(
   products: Product[],
-  searchQuery: string = '',
-  sortBy: 'price-asc' | 'price-desc' | 'newest' = 'newest',
+  searchQuery: string = "",
+  sortBy: "price-asc" | "price-desc" | "newest" = "newest",
   page: number = 1,
-  itemsPerPage: number = 12
+  itemsPerPage: number = 12,
 ): PaginationResult<Product> {
   let filtered = searchProducts(products, searchQuery);
   let sorted = sortProducts(filtered, sortBy);

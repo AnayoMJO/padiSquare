@@ -22,6 +22,6 @@ export interface Vendor {
 
 export interface SearchParams {
   search?: string;
-  sort?: 'price-asc' | 'price-desc' | 'newest';
+  sort?: "price-asc" | "price-desc" | "newest";
   page?: string;
 }

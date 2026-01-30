@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useState, useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 interface SearchBarProps {
   brandColor: string;
@@ -12,20 +12,20 @@ export function SearchBar({ brandColor }: SearchBarProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [query, setQuery] = useState(searchParams.get('search') || '');
+  const [query, setQuery] = useState(searchParams.get("search") || "");
 
   const handleSearch = useCallback(
     (value: string) => {
       const params = new URLSearchParams(searchParams);
       if (value.trim()) {
-        params.set('search', value);
+        params.set("search", value);
       } else {
-        params.delete('search');
+        params.delete("search");
       }
-      params.set('page', '1'); // Reset to first page on new search
+      params.set("page", "1"); // Reset to first page on new search
       router.push(`${pathname}?${params.toString()}`);
     },
-    [searchParams, router, pathname]
+    [searchParams, router, pathname],
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,10 +35,10 @@ export function SearchBar({ brandColor }: SearchBarProps) {
   };
 
   const handleClear = () => {
-    setQuery('');
+    setQuery("");
     const params = new URLSearchParams(searchParams);
-    params.delete('search');
-    params.set('page', '1');
+    params.delete("search");
+    params.set("page", "1");
     router.push(`${pathname}?${params.toString()}`);
   };
 
@@ -50,9 +50,11 @@ export function SearchBar({ brandColor }: SearchBarProps) {
         value={query}
         onChange={handleChange}
         className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
-        style={{
-          focusRing: `2px solid ${brandColor}`,
-        }}
+        style={
+          {
+            focusRing: `2px solid ${brandColor}`,
+          } as React.CSSProperties
+        }
       />
       {query && (
         <button

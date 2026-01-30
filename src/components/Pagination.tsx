@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useCallback } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useCallback } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 interface PaginationProps {
   currentPage: number;
@@ -25,21 +25,25 @@ export function Pagination({
   const goToPage = useCallback(
     (page: number) => {
       const params = new URLSearchParams(searchParams);
-      params.set('page', String(page));
+      params.set("page", String(page));
       router.push(`${pathname}?${params.toString()}`);
     },
-    [searchParams, router, pathname]
+    [searchParams, router, pathname],
   );
 
   // Generate page numbers to display
   const getPageNumbers = () => {
     const delta = 2;
     const range = [];
-    const rangeWithDots = [];
-    let l;
+    const rangeWithDots: (number | string)[] = [];
+    let l: number;
 
     for (let i = 1; i <= totalPages; i++) {
-      if (i == 1 || i == totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
+      if (
+        i == 1 ||
+        i == totalPages ||
+        (i >= currentPage - delta && i <= currentPage + delta)
+      ) {
         range.push(i);
       }
     }
@@ -49,7 +53,7 @@ export function Pagination({
         if (i - l === 2) {
           rangeWithDots.push(l + 1);
         } else if (i - l !== 1) {
-          rangeWithDots.push('...');
+          rangeWithDots.push("...");
         }
       }
       rangeWithDots.push(i);
@@ -76,15 +80,17 @@ export function Pagination({
       <div className="flex gap-1">
         {pageNumbers.map((page, idx) => (
           <div key={idx}>
-            {page === '...' ? (
-              <span className="px-3 py-2 text-gray-600 dark:text-gray-400">...</span>
+            {page === "..." ? (
+              <span className="px-3 py-2 text-gray-600 dark:text-gray-400">
+                ...
+              </span>
             ) : (
               <button
                 onClick={() => goToPage(page as number)}
                 className={`px-3 py-2 rounded-lg transition-colors ${
                   currentPage === page
-                    ? 'text-white font-semibold'
-                    : 'border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? "text-white font-semibold"
+                    : "border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 }`}
                 style={
                   currentPage === page
