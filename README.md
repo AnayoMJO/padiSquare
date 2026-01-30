@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Padisquare - Multi-Vendor Mini Sites
 
 A modern, responsive Next.js application showcasing a multi-vendor marketplace where vendors can generate their own storefronts.
@@ -363,3 +364,7 @@ For issues, questions, or suggestions, please open an issue on GitHub.
 
 **Brand Color**: #159C47 🎨
 **Last Updated**: January 2026
+=======
+# padi-square
+A modern, responsive Next.js application showcasing a multi-vendor marketplace where vendors can generate their own storefronts.
+>>>>>>> ec5b87f112508e1f07c3d5281ccd988ebf5854fb
